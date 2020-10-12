@@ -1,0 +1,48 @@
+.movie__image{
+    width: 75px;
+}
+
+.movie{
+    display: flex;
+    padding: 5px;
+    width: 100%;
+}
+.MuiAutocomplete-option {
+
+    padding: 5px !important;
+    border-bottom: 1px solid lightgray;
+  
+}
+
+.movie:hover{
+    background-color: #3b3b3b;
+}
+
+.movie__right{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.movie__right > h3{
+    color: white !important;
+    font-size: 18px;
+    font-weight: 400 !important;
+}
+
+.MuiPaper-root {
+    background-color: #1f1f1f !important;
+}
+
+@media (max-width: 900px){
+
+.movie__right > h3{
+    font-size: 12px;
+    font-weight: 400 !important;
+}
+
+.movie__image{
+    width: 50px;
+}
+
+
+}

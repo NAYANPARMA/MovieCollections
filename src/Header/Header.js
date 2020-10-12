@@ -3,33 +3,25 @@ import { Autocomplete } from "@material-ui/lab"
 import TextField from "@material-ui/core/TextField";
 import './Header.css'
 import axios from '../axios'
-import { Avatar } from '@material-ui/core';
-import AddBoxIcon from "@material-ui/icons/AddBox";
 import MenuIcon from "@material-ui/icons/Menu";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { SearchRounded } from '@material-ui/icons';
 import CircularProgress from "@material-ui/core/CircularProgress";
+import MovieOptions from './MovieOptions/MovieOptions';
 
-const baseUrl = "https://image.tmdb.org/t/p/original/"
+
 const Header = () => {
-  const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
-  const loading = open && options.length === 0;
+  const [ loading, setLoading] = useState(false)
 
-  useEffect(() => {
-     if (!open) {
-       setOptions([]);
-     }
-   }, [open]);
-
-   const movies = async (e) => {
+   const movies = async (v) => {
       const request = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=26ce533749beac93b06c8febb6cac210&language=en-US&query=${e.target.value}&include_adult=false`
+        // `https://api.themoviedb.org/3/search/movie?api_key=26ce533749beac93b06c8febb6cac210&language=en-US&query=${e.target.value}&include_adult=false`
+         `https://api.themoviedb.org/3/search/multi?api_key=26ce533749beac93b06c8febb6cac210&language=en-US&query=${v}&include_adult=false`
+        // `https://api.themoviedb.org/3/search/tv?api_key=26ce533749beac93b06c8febb6cac210&language=en-US&page=1&query=${e.target.value}&include_adult=false`
       );
-      request.data.results && setOptions(request.data.results);
+     setOptions(request.data.results);
       
    };
-
     return (
       <div className="header">
         <div className="header__right">
@@ -56,42 +48,31 @@ const Header = () => {
         <div className="header__left">
           <Autocomplete
             freeSolo
-            className='header__search'
-            id="asynchronous-demo"
-            style={{ width: 300 }}
-            open={open}
-            onOpen={() => {
-              setOpen(true);
+            className="header__search"
+            id="clear-on-escape"
+            clearOnEscape
+           // value={v}
+            onInputChange={(e,v)=>movies(v)}
+            getOptionLabel={(option) =>{
+              return option.original_name || option.original_title || ""
             }}
-            onClose={() => {
-              setOpen(false);
-            }}
-            onInputChange={(e) => movies(e)}
-            getOptionLabel={(option) => option.original_title}
             options={options}
             loading={loading}
-
-            renderOption ={(option) => (
-              <div>
-                <img 
-                  style={{width:'50px'}}
-                 src={`${baseUrl}${option.poster_path}`}
-                 alt={option.original_title}
-                />
-                <h3>{option.original_title}</h3>
-              </div>
+            renderOption={(option) => (
+              <MovieOptions movie={option}/>
             )}
             renderInput={(params) => (
               <TextField
-                style={{color:'white'}}
+                style={{ color: "white" }}
                 {...params}
                 label="Search"
+               // value={v}
                 InputProps={{
                   ...params.InputProps,
                   endAdornment: (
                     <React.Fragment>
                       {loading ? (
-                        <CircularProgress color="inherit" size={20} />
+                        <CircularProgress color="primary" size={20} />
                       ) : null}
                       {params.InputProps.endAdornment}
                     </React.Fragment>

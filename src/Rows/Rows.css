@@ -1,5 +1,6 @@
 .row{
     margin-left:20px;
+    margin-top: 10px;
 }
 
 .row__posters{
@@ -40,4 +41,114 @@
     padding-left: 20px;
     padding-top:5px;
     color: white;
+}
+
+.row__description{
+    margin-left: 20px;
+    margin-right: 20px;
+    border: 1px solid #3b3b3b;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 25px;
+}
+
+.row__description > h2{
+    font-size: 18px;
+    font-weight: 600;
+    width: 100px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    color: #fff;
+    outline: none;
+    border: none;
+    border-radius: 0.2vw;
+    background-color: rgba(51,51,51,0.5);
+    padding-bottom: 0.5rem;
+    
+}
+
+.movie__description > h2{
+    font-size: 18px;
+    font-weight: 400;
+    padding: 10px;
+    color: #fff;
+    outline: none;
+    border: none;
+    border-radius: 0.2vw;
+    background-color: rgba(51,51,51,0.5);
+    padding-bottom: 0.5rem;
+}
+
+.movie__title > h2 {
+    font-size: 18px;
+    font-weight: 400;
+    padding: 10px;
+    color: #fff;
+    outline: none;
+    border: none;
+    border-radius: 0.2vw;
+    background-color: rgba(51,51,51,0.5);
+    padding-bottom: 0.5rem;
+}
+
+.description__title{
+    font-size: 20px;
+    margin-right: 10px;
+    font-weight: 600;
+}
+
+@media (max-width: 650px){
+.row{
+    margin-left:0px;
+    margin-top: 10px;
+}
+
+.row__posters{
+    padding:10px;
+}
+
+.row__poster{
+    max-height: 80px;
+  
+}
+
+.row__posterlarge{
+    max-height: 150px;
+}
+
+.row > h2 {
+    font-size: 18px;
+    padding-left: 10px;
+}
+
+.row__description{
+    margin-left: 10px;
+}
+
+.row__description > h2{
+    font-size: 12px;
+    width: 70px;
+    padding: 5px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding-bottom: 0.5rem;
+}
+
+.movie__description > h2{
+    font-size: 12px;
+    padding: 5px;
+    
+}
+
+.movie__title > h2 {
+    font-size: 14px;
+    padding: 5px;
+}
+
+.description__title{
+    font-size: 12px;
+    font-weight: 600;
+}
 }

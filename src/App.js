@@ -2,24 +2,29 @@ import React, { useState } from 'react';
 import './App.css';
 import Header from './Header/Header';
 import Home from './HOME/Home';
-import Rows from './Rows/Rows';
-import request from './Requests/requests'
-import Banner from './Banner/Banner';
+import { BrowserRouter as Router , Switch, Route} from 'react-router-dom'
+import SearchResult from './SearchResults/SearchResult';
 
 function App() {
-  
+
+
   return (
-    <div className="app">
-      <Header/>
-      <Banner/>
-      {/* <Home/> */}
-      <Rows title='NETFLIX ORIGINALS' fatchUrl={request.fetchNetflixOriginals} isLargeraw/>
-      <Rows title='TRENDING NOW' fatchUrl={request.fetchTrending}/>
-      <Rows title='TOP RATED' fatchUrl={request.fetchTopRated} />
-      <Rows title='ACTION MOVIES' fatchUrl={request.fetchActionMovies} />
-      <Rows title='COMEDY MOVIES' fatchUrl={request.fetchComedyMovies} />
-      <Rows title='DOCUMENTRY' fatchUrl={request.fetchDocumentaries} />
-    </div>
+    <Router>
+      <div className="app">
+      <Switch>
+        <Route path='/searchresult/:type/:id'>
+          <Header/>
+          <SearchResult/>
+        </Route>
+        <Route path='/'>
+          <Header/>
+          <Home/>
+        </Route>
+      </Switch>
+      </div>
+    </Router>
+
+    
   );
 }
 
